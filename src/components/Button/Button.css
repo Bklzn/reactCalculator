@@ -1,21 +1,42 @@
 .buttons{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 3px;
     height: 100%;
 }
-.number{
+.buttons button{
     color: white;
-    background: #3b3b3b;
     border: 1px solid #3b3b3b;
     border-radius: 3px;
     padding: 5px
+}
+.number{
+    background: #3b3b3b;
 }
 .number:hover{
     background: #303030;
 }
 .number:active{
     background: #272727;
+}
+.operation{
+    background: #303030;
+}
+.operation:hover{
+    background: #3b3b3b; 
+}
+.operation:active{
+    background: #303030;
+}
+.equal{
+    color: black !important;
+    background: #fc9980;
+}
+.equal:hover{
+    background: #c97a67;
+}
+.equal:active{
+    background: #b16855;
 }
 .number:nth-child(1) { grid-area: 4 / 2; }
 .number:nth-child(2) { grid-area: 3 / 1; }
@@ -24,3 +45,4 @@
 .number:nth-child(5) { grid-area: 2 / 1; }
 .number:nth-child(6) { grid-area: 2 / 2; }
 .number:nth-child(7) { grid-area: 2 / 3; }
+.operation {grid-area: auto / 4}

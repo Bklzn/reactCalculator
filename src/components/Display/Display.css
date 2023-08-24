@@ -1,5 +1,4 @@
 .display {
-    justify-content: end;
     color: white;
     display: flex;
     flex-direction: row;
@@ -8,5 +7,6 @@
     font-size: 3em;
     font-weight: 600;
     height: 10%;
+    justify-content: end;
     margin: 10px;
 }
