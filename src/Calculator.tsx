@@ -33,7 +33,7 @@ function Calculator() {
     }
   };
   const operations = (sign: string) => {
-    let a = Number.parseFloat(operationDisplay.slice(0,-1))
+    let a = Number.parseFloat(operationDisplay.slice(0,-1)) || 0
     let b = Number.parseFloat(mainDisplay)
     const calc = (a:number, b:number, o:string) =>{
       switch(o){
@@ -43,16 +43,14 @@ function Calculator() {
           return a - b;
         case '*':
           return a * b;
+        case '**':
+          return a ** b;
         case '/':
           return a / b;
       }
     }
-    if(resetMainDisplay) {
-      setOperationDisplay((v) => v.slice(0, -1) + sign)
-      setLastSign(sign)
-      return
-    }
     if (sign === '=') {
+      console.log(lastSign)
       if (lastSign){
         setOperationDisplay(`${a} ${lastSign} ${b} ${sign}`)
         setMainDisplay(String(calc(a,b,lastSign)))
@@ -71,21 +69,48 @@ function Calculator() {
       setOperationDisplay(mainDisplay)
       setMainDisplay(mainDisplay)
     }
-    setOperationDisplay((v) => v + sign)
+    setOperationDisplay((v) => v + ` ${sign}`)
     setLastSign(sign)
     setResetMainDisplay(true)
+    setResetOperationDisplay(false)
+  }
+  const clear = () => {
+    setOperationDisplay('')
+    setMainDisplay('0')
+    setLastSign('')
+    setResetMainDisplay(true)
+    setResetOperationDisplay(false)
+
+  }
+  const backspace = () => {
+    if(resetMainDisplay) {
+      setOperationDisplay('')
+      setLastSign('')
+      setResetOperationDisplay(false)
+    } else {
+      if (mainDisplay.length > 1){
+        setMainDisplay(v => v.slice(0,-1))
+      } else {
+        setMainDisplay('0')
+        setResetMainDisplay(true)
+      }
+    }
   }
   return (
     <>
       <OperationDisplay>{operationDisplay}</OperationDisplay>
       <Display>{mainDisplay}</Display>
       <div className="buttons">
-        {[...Array(10)].map((e, i) =>
-          <Button className='number' key={i} onClick={() => updateDisplay(i.toString())}>{i}</Button>)
-        }
+        <Button className='operation' key={'C'} onClick={() => clear()}>C</Button>
+        <Button className='operation' key={'Del'} onClick={() => backspace()}>Del</Button>
+        <Button className='operation' key={'x2'} onClick={() => operations('**')}>x<sup>y</sup></Button>
+        <Button className='operation' key={'/'} onClick={() => operations('/')}>/</Button>
         <Button className='operation' key={'x'} onClick={() => operations("*")}>*</Button>
         <Button className='operation' key={'-'} onClick={() => operations("-")}>-</Button>
         <Button className='operation' key={'+'} onClick={() => operations("+")}>+</Button>
+        {[...Array(10)].map((e, i) =>
+          <Button className='number' key={i} onClick={() => updateDisplay(i.toString())}>{i}</Button>)
+        }
         <Button className='number' key={'toggleNegative'} onClick={() => updateDisplay('-')}>+/-</Button>
         <Button className='number' key={'dot'} onClick={() => updateDisplay('.')}>.</Button>
         <Button className='equal' key={'='} onClick={() => operations("=")}>=</Button>
