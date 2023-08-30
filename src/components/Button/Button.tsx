@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 interface Props{
     children: ReactNode,
     className?: string,
-    onClick: () => void
+    onClick: (...args: any) => void
 }
 
 const Button = ({children, className, onClick}: Props) => {

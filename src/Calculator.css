@@ -11,6 +11,7 @@ body {
     height: min(100%, 530px);
     justify-content: space-between;
     left: 50%;
+    overflow: hidden;
     padding: 6px;
     position: absolute;
     top: 50%;

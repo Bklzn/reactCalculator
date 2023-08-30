@@ -1,6 +1,7 @@
 import {Display, OperationDisplay} from './components/Display/Display'
 import Button from './components/Button/Button'
 import { useState } from 'react'
+import Memory from './components/memory/memory'
 
 function Calculator() {
   const [operationDisplay, setOperationDisplay] = useState('')
@@ -8,6 +9,7 @@ function Calculator() {
   const [lastSign, setLastSign] = useState('')
   const [resetMainDisplay, setResetMainDisplay] = useState(true)
   const [resetOperationDisplay, setResetOperationDisplay] = useState(false)
+  const [MemoryButtons, MemoryList] = Memory({mainDisplay, setMainDisplay, setResetMainDisplay})
   const updateDisplay = (value: string) => {
     if (resetOperationDisplay) {
       setOperationDisplay('')
@@ -100,6 +102,7 @@ function Calculator() {
     <>
       <OperationDisplay>{operationDisplay}</OperationDisplay>
       <Display>{mainDisplay}</Display>
+      <MemoryButtons></MemoryButtons>
       <div className="buttons">
         <Button className='operation' key={'C'} onClick={() => clear()}>C</Button>
         <Button className='operation' key={'Del'} onClick={() => backspace()}>Del</Button>
@@ -115,6 +118,7 @@ function Calculator() {
         <Button className='number' key={'dot'} onClick={() => updateDisplay('.')}>.</Button>
         <Button className='equal' key={'='} onClick={() => operations("=")}>=</Button>
       </div>
+      <MemoryList></MemoryList>
     </>
   )
 }
