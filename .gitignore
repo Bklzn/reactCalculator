@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# page
+
+src/*
+public/*
+*.json
+*.ts
