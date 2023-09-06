@@ -111,7 +111,7 @@ function Calculator() {
         <Button className='operation' key={'x'} onClick={() => operations("*")}>*</Button>
         <Button className='operation' key={'-'} onClick={() => operations("-")}>-</Button>
         <Button className='operation' key={'+'} onClick={() => operations("+")}>+</Button>
-        {[...Array(10)].map((e, i) =>
+        {[...Array(10)].map((_e, i) =>
           <Button className='number' key={i} onClick={() => updateDisplay(i.toString())}>{i}</Button>)
         }
         <Button className='number' key={'toggleNegative'} onClick={() => updateDisplay('-')}>+/-</Button>

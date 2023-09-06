@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, useEffect, useRef, useState} from "react"
+import { useEffect, useState} from "react"
 import Button from "../Button/Button"
 
 interface Props {
