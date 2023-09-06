@@ -20,8 +20,10 @@ const Memory = ({mainDisplay, setMainDisplay, setResetMainDisplay}: Props) => {
     useEffect(() => {
         let memoryBtns = document.querySelectorAll('.memory button') as NodeListOf<HTMLButtonElement>
         if(listShowed){
-            cover.addEventListener('click', clickHandler)
-            if ( !document.body.querySelector('.cover') ) document.getElementById('Calculator')?.appendChild(cover)
+            if ( !document.body.querySelector('.cover') ) {
+                document.getElementById('Calculator')?.appendChild(cover)
+                cover.addEventListener('click', clickHandler)
+            }
             memoryBtns.forEach((e, i) => {
                 if( i !== memoryBtns.length - 1 ) e.disabled = true
             })
@@ -30,9 +32,6 @@ const Memory = ({mainDisplay, setMainDisplay, setResetMainDisplay}: Props) => {
             memoryBtns[0].disabled = true
             memoryBtns[1].disabled = true
             if (!listShowed) memoryBtns[memoryBtns.length - 1].disabled = true
-        }
-        return () => {
-            cover.removeEventListener('click', clickHandler)
         }
     })
 
